@@ -31,13 +31,18 @@ public class Planner {
 			      if(verifyChoice(choice) == true){
 					
 					roomM = choice;
-			      }			
+					System.out.println();
+			      }else{
+				System.out.print("Not a valid room. Try again.\n");
+				continue;
+			     }			
 			
 			}else{
-				System.out.println("Please choose a room!");
+				System.out.println("Please choose a room!\n");
+				continue;
 			}
 
-			System.out.println("Select which room the box starts in:");
+			System.out.println("Select which room the box starts in:\n");
 			printOptions();			
 
 			if(input.hasNext()){
@@ -45,15 +50,20 @@ public class Planner {
 				choice = input.next();				
 				if(verifyChoice(choice) == true){
 					roomB = choice;
+					System.out.println();
 
+				}else{
+					System.out.println("Invalid choice.");
+					continue;
 				}
 
 			}else{
-				
+				System.out.println("Pick a room please!");
+				continue;	
 			}
 			
 
-			System.out.println("Select which room the bananas start in:");
+			System.out.println("Select which room the bananas start in:\n");
 			printOptions();			
 
 			if(input.hasNext()){
@@ -61,10 +71,17 @@ public class Planner {
 				choice = input.next();
 				if(verifyChoice(choice) == true){
 					roomN = choice;
+					System.out.println();
+				}else{
+					System.out.println("Invalid choice\n");
+					continue;
 				}
 
 
 					
+			}else{
+				System.out.println("Pick a room, or face your doom...\n");
+				continue;
 			}
 
 			break;			
@@ -92,7 +109,11 @@ public class Planner {
 
 	public boolean verifyChoice(String choice){
 
-		return true;
+		if(choice.equalsIgnoreCase("A") || choice.equalsIgnoreCase("B") || choice.equalsIgnoreCase("C")){
+			return true;
+		}else{
+			return false;
+		}
 
 	}
 

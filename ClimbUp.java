@@ -1,5 +1,5 @@
 public class ClimbUp{
-    private String operatorName = "ClimbUp";
+    public String operatorName = "CLIMBUP";
 
     public boolean checkPreconditions(WorldState worldState) {
         if(!worldState.isMonkeyAt(worldState.getRoomBoxIn())){
@@ -13,11 +13,10 @@ public class ClimbUp{
         return true;
     }
 
-    public WorldState applyPostconditions(WorldState worldState) {
-        //create and return a new WorldState
-        //with the monkey’s updated location
-        WorldState out = new WorldState(/*Add Post Conditions*/);
-        return out;
+    public WorldState applyPostconditions(WorldState preOperation) {
+        //create and return a new WorldState with all conditions constant except for the updated height='Heigh'
+        WorldState postOperation = new WorldState(preOperation.getRoomMonkeyIn(),preOperation.getRoomBoxIn(), preOperation.getroomBananasIn(), WorldState.HEIGHT_HIGH, preOperation.getMonkeyHasBananas());
+        return postOperation;
     }
 
     

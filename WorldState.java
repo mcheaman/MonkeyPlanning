@@ -18,9 +18,9 @@ public class WorldState {
         this.monkeyHeight = monkeyHeight;
         this.monkeyHasBananas = monkeyHasBananas;
     }
-    public WorldState(){
+    // public WorldState(){
         
-    }
+    // }
 
     public String getRoomMonkeyIn(){
         return this.roomMonkeyIn;
@@ -31,7 +31,9 @@ public class WorldState {
     public String getroomBananasIn(){
         return this.roomBananasIn;
     }
-
+    public String getMonkeyHeight(){
+        return this.monkeyHeight;
+    }
     public boolean getMonkeyHasBananas(){
         return this.monkeyHasBananas;
     }

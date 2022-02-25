@@ -1,6 +1,6 @@
 
 public class Move {
-    private String operatorName = "MOVE";
+    public String operatorName = "MOVE";
     private String moveFrom;
     private String moveTo;
 
@@ -21,11 +21,10 @@ public class Move {
         return true;
     }
 
-    public WorldState applyPostconditions(WorldState worldState) {
-        //create and return a new WorldState
-        //with the monkey’s updated location
-        WorldState out = new WorldState(/*Add Post Conditions*/);
-        return out;
+    public WorldState applyPostconditions(WorldState preOperation) {
+        //create and return a new WorldState with all conditions constant except for the updated roomMonkeyIn='moveTo'
+        WorldState postOperation = new WorldState(moveTo,preOperation.getRoomBoxIn(), preOperation.getroomBananasIn(), preOperation.getMonkeyHeight(), preOperation.getMonkeyHasBananas());
+        return postOperation;
     }
 }
     

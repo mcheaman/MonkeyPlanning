@@ -11,13 +11,24 @@ public class WorldState {
     public static final String HEIGHT_LOW = "Low";
     public static final String HEIGHT_HIGH = "High";
 
+    public WorldState(String roomMonkeyIn, String roomBoxIn, String roomBananasIn, String monkeyHeight, boolean monkeyHasBananas){
+        this.roomMonkeyIn = roomMonkeyIn;
+        this.roomBoxIn = roomBoxIn;
+        this.roomBananasIn = roomBananasIn;
+        this.monkeyHeight = monkeyHeight;
+        this.monkeyHasBananas = monkeyHasBananas;
+    }
+    public WorldState(){
+        
+    }
+
     public String getRoomMonkeyIn(){
         return this.roomMonkeyIn;
     }
     public String getRoomBoxIn(){
         return this.roomBoxIn;
     }
-    public String roomBananasIn(){
+    public String getroomBananasIn(){
         return this.roomBananasIn;
     }
 
@@ -28,10 +39,12 @@ public class WorldState {
     public boolean isMonkeyAt(String room) {
         return this.roomMonkeyIn.equalsIgnoreCase(room);
     }
+    public boolean isBoxAt(String room) {
+        return this.roomMonkeyIn.equalsIgnoreCase(room);
+    }
     public boolean isMonkeyHeight(String height) {
         return this.monkeyHeight.equalsIgnoreCase(height);
     }
-
 
 }
 

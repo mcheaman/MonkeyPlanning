@@ -15,9 +15,9 @@ public class Planner {
 
 		Scanner input = new Scanner(System.in);
 
-		String roomM;
-		String roomB;
-		String roomN;
+		String roomM = "";
+		String roomB = "";
+		String roomN = "";
 
 		while(choosing) { //Error Handling
 

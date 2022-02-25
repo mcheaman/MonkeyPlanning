@@ -15,14 +15,15 @@ public class Planner {
 
 		Scanner input = new Scanner(System.in);
 
+		String roomM;
+		String roomB;
+		String roomN;
+
 		while(choosing) { //Error Handling
 
 			System.out.println("Select which room the monkey starts in:\n");
 			printOptions();		
 	
-			String roomM;
-			String roomB;
-			String roomN; 
 			String choice = " ";
 
 			if(input.hasNext()){
@@ -91,6 +92,9 @@ public class Planner {
 		} 
 
 
+		Plan(roomM, roomB, roomN);
+
+
 		System.out.println("=========================================================");
 
 
@@ -114,6 +118,15 @@ public class Planner {
 		}else{
 			return false;
 		}
+
+	}
+
+
+	//Driver for the plan. Takes in the starting values, creates a worldstate.
+	public void Plan(String monkeyLoc, String boxLoc, String bananaLoc){
+
+		WorldState intitialState = new WorldState(monkeyLoc, boxLoc, bananaLoc, WorldState.HEIGHT_LOW, false);
+
 
 	}
 

@@ -5,18 +5,23 @@ public class WorldState {
     private String monkeyHeight;
     private boolean monkeyHasBananas;
 
+    public String lastOp;
+
     public static final String ROOM_A = "A";
     public static final String ROOM_B = "B";
     public static final String ROOM_C = "C";
     public static final String HEIGHT_LOW = "Low";
     public static final String HEIGHT_HIGH = "High";
 
-    public WorldState(String roomMonkeyIn, String roomBoxIn, String roomBananasIn, String monkeyHeight, boolean monkeyHasBananas){
+    public static String rooms = "ABC";
+
+    public WorldState(String roomMonkeyIn, String roomBoxIn, String roomBananasIn, String monkeyHeight, boolean monkeyHasBananas, String lastOperation){
         this.roomMonkeyIn = roomMonkeyIn;
         this.roomBoxIn = roomBoxIn;
         this.roomBananasIn = roomBananasIn;
         this.monkeyHeight = monkeyHeight;
         this.monkeyHasBananas = monkeyHasBananas;
+        this.lastOp = lastOperation;
     }
     // public WorldState(){
         
@@ -49,4 +54,5 @@ public class WorldState {
     }
 
 }
+
 

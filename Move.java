@@ -1,8 +1,10 @@
 
 public class Move {
-    public String operatorName = "MOVE";
+    public static String operatorName = "MOVE";
     private String moveFrom;
     private String moveTo;
+
+
 
     public Move(String from, String to){
         this.moveFrom = from;
@@ -18,12 +20,16 @@ public class Move {
             return false;
         }
 
+        if(moveTo.equalsIgnoreCase(moveFrom)){
+            return false;
+        }
+
         return true;
     }
 
     public WorldState applyPostconditions(WorldState preOperation) {
         //create and return a new WorldState with all conditions constant except for the updated roomMonkeyIn='moveTo'
-        WorldState postOperation = new WorldState(moveTo,preOperation.getRoomBoxIn(), preOperation.getroomBananasIn(), preOperation.getMonkeyHeight(), preOperation.getMonkeyHasBananas());
+        WorldState postOperation = new WorldState(moveTo,preOperation.getRoomBoxIn(), preOperation.getroomBananasIn(), preOperation.getMonkeyHeight(), preOperation.getMonkeyHasBananas(), operatorName + moveTo);
         return postOperation;
     }
 }

@@ -1,5 +1,5 @@
 public class Push {
-    public String operatorName = "PUSH";
+    public static String operatorName = "PUSH";
     private String pushFrom;
     private String pushTo;
 
@@ -19,12 +19,16 @@ public class Push {
             return false;
         }
 
+        if(pushTo == pushFrom){
+            return false;
+        }
+
         return true;
     }
 
     public WorldState applyPostconditions(WorldState preOperation) {
         //create and return a new WorldState with all conditions constant except for the updated roomMonkeyIn='pushTo' and roomBoxIn='pushTo'
-        WorldState postOperation = new WorldState(pushTo,pushTo, preOperation.getroomBananasIn(), preOperation.getMonkeyHeight(), preOperation.getMonkeyHasBananas());
+        WorldState postOperation = new WorldState(pushTo,pushTo, preOperation.getroomBananasIn(), preOperation.getMonkeyHeight(), preOperation.getMonkeyHasBananas(), operatorName + pushTo);
         return postOperation;
     }
 

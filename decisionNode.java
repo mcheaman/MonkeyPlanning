@@ -22,8 +22,7 @@ public class decisionNode {
     public void printChildren(decisionNode n){
 
         for (decisionNode Node : children) {
-            System.out.println("\n" + Node.value.lastOp);
-            System.out.println(Node.value.getRoomMonkeyIn());
+            System.out.println("\n" + Node.value.lastOp + ": Monke in " + Node.value.getRoomMonkeyIn());
         }
 
 

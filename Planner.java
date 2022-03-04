@@ -130,11 +130,13 @@ public class Planner {
 
 		decisionNode tree = new decisionNode(initialState);
 		generateChildren(tree);
-
+		System.out.println("Children of Initial State");
 		tree.printChildren(tree);
 
+		while(true){ //While goal is not reached
+			//Implement breadth first search with inspo from https://www.baeldung.com/java-breadth-first-search#algorithm-trees
+		}
 	}
-
 
 	public void validateMove(){
 
@@ -157,24 +159,30 @@ public class Planner {
 		}
 
 		//Move Checks & Push Checks
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 3; i++) {
 			
 			String room = "" + WorldState.rooms.charAt(i);
 
 			Move potential = new Move(currentRoom, room);
 			Push potentialp = new Push(currentRoom, room);
-
+			// System.out.println("Trying to move from " + currentRoom + " to " + room);
 			if(potential.checkPreconditions(n.value) == true){
-
+				// System.out.println("\tvalid");
 				//create the move object
 				n.children.add(new decisionNode(potential.applyPostconditions(n.value)));
 
+			}else{
+				// System.out.println("\tinvalid");
+
 			}
+			// System.out.println("Trying to push from " + currentRoom + " to " + room);
 
 			if(potentialp.checkPreconditions(n.value) == true){
-
+				// System.out.println("\tvalid");
 				n.children.add(new decisionNode(potentialp.applyPostconditions(n.value)));
 
+			}else{
+				// System.out.println("\tinvalid");
 			}
 
 		}

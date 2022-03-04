@@ -47,7 +47,7 @@ public class WorldState {
         return this.roomMonkeyIn.equalsIgnoreCase(room);
     }
     public boolean isBoxAt(String room) {
-        return this.roomMonkeyIn.equalsIgnoreCase(room);
+        return this.roomBoxIn.equalsIgnoreCase(room);
     }
     public boolean isMonkeyHeight(String height) {
         return this.monkeyHeight.equalsIgnoreCase(height);

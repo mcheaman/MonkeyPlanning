@@ -19,10 +19,10 @@ public class Push {
             return false;
         }
 
-        if(pushTo == pushFrom){
+        if(pushTo.equalsIgnoreCase(pushFrom)){
             return false;
         }
-
+        System.out.println(pushFrom + " " + pushTo);
         return true;
     }
 

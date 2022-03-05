@@ -4,13 +4,13 @@ public class decisionNode {
 
 
     WorldState value;
-
+    decisionNode parent;
     public ArrayList<decisionNode> children = new ArrayList<>();
 
-    decisionNode(WorldState state){
+    decisionNode(WorldState state, decisionNode parent){
 
         value = state;
-
+        this.parent = parent; 
     }
 
     //public ArrayList<WorldState> returnChildren(decisionNode n){
@@ -19,14 +19,24 @@ public class decisionNode {
 
     //}
 
-    public void printChildren(decisionNode n){
-
+    public void printChildren(){
+        System.out.println("************Printing Children of " + this.value.lastOp + " *************");
         for (decisionNode Node : children) {
             System.out.println("\n" + Node.value.lastOp + ": Monke in " + Node.value.getRoomMonkeyIn());
         }
-
-
+        System.out.println("*****************************************************");
     }
+
+    public void printParents(){
+        System.out.println("************Printing Parents*************");
+        decisionNode temp = this;
+        while(temp != null) {
+            System.out.println("\n" + temp.value.lastOp + ": Monke in " + temp.value.getRoomMonkeyIn());
+            temp = temp.parent;
+        }
+        System.out.println("*******************************************");
+    }
+
 
 
 

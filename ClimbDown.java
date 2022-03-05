@@ -1,5 +1,5 @@
 public class ClimbDown{
-    public static String operatorName = "CLIMBUP";
+    public static String operatorName = "CLIMBDOWN";
 
 
     public static boolean checkPreconditions(WorldState worldState) {

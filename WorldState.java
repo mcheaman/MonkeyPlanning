@@ -53,6 +53,10 @@ public class WorldState {
         return this.monkeyHeight.equalsIgnoreCase(height);
     }
 
+    public void printState(){
+        System.out.println("Monke: "+ roomMonkeyIn + " " + "Box: "+ roomBoxIn + " " +"Banans: "+ roomBananasIn+ " " + "Height: "+ monkeyHeight+" " + "Has: " + monkeyHasBananas);
+    }
+
 }
 
 

@@ -22,13 +22,12 @@ public class Push {
         if(pushTo.equalsIgnoreCase(pushFrom)){
             return false;
         }
-        System.out.println(pushFrom + " " + pushTo);
         return true;
     }
 
     public WorldState applyPostconditions(WorldState preOperation) {
         //create and return a new WorldState with all conditions constant except for the updated roomMonkeyIn='pushTo' and roomBoxIn='pushTo'
-        WorldState postOperation = new WorldState(pushTo,pushTo, preOperation.getroomBananasIn(), preOperation.getMonkeyHeight(), preOperation.getMonkeyHasBananas(), operatorName + pushTo);
+        WorldState postOperation = new WorldState(pushTo,pushTo, preOperation.getroomBananasIn(), preOperation.getMonkeyHeight(), preOperation.getMonkeyHasBananas(), operatorName +pushFrom + "->" +pushTo);
         return postOperation;
     }
 

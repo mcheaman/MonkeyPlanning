@@ -29,7 +29,7 @@ public class Move {
 
     public WorldState applyPostconditions(WorldState preOperation) {
         //create and return a new WorldState with all conditions constant except for the updated roomMonkeyIn='moveTo'
-        WorldState postOperation = new WorldState(moveTo,preOperation.getRoomBoxIn(), preOperation.getroomBananasIn(), preOperation.getMonkeyHeight(), preOperation.getMonkeyHasBananas(), operatorName + moveTo);
+        WorldState postOperation = new WorldState(moveTo,preOperation.getRoomBoxIn(), preOperation.getroomBananasIn(), preOperation.getMonkeyHeight(), preOperation.getMonkeyHasBananas(), operatorName + moveFrom + "->" + moveTo);
         return postOperation;
     }
 }

@@ -162,9 +162,17 @@ public class Planner {
 		}
 	}
 
-	// public void validateMove(){
-	// }
 
+	//Set the priority of a decisionNode to denote how "productive" its WorldState is
+	public void setPriority(){
+		//If not in room with box and moving towards room with box
+			//priority set to 1
+		//If box not in room with bananas and moving box to room with bananas
+			//priority set to 2
+		//If height is low and in room with bananas, and trying to set height to high
+			//priority set to 3
+
+	}
 	public boolean goalReached(decisionNode n){
 		return Grab.checkPreconditions(n.value) == true;
 	}
@@ -193,15 +201,18 @@ public class Planner {
 			if(potential.checkPreconditions(n.value) == true){
 				//create the move object
 				decisionNode moveNode = new decisionNode(potential.applyPostconditions(n.value), n);
-				n.children.add(moveNode);
-				stateQueue.add(moveNode);
+				//set the node's priority
+					//**add to arraylist of possible children**
+				// n.children.add(moveNode);
+				// stateQueue.add(moveNode);
 			}else{
 				// System.out.println("\tinvalid");
 			}
 			if(potentialp.checkPreconditions(n.value) == true){
-				decisionNode pushNode = new decisionNode(potentialp.applyPostconditions(n.value), n);				
-				n.children.add(pushNode);
-				stateQueue.add(pushNode);
+				decisionNode pushNode = new decisionNode(potentialp.applyPostconditions(n.value), n);
+				//set the node's priority				
+				// n.children.add(pushNode);
+				// stateQueue.add(pushNode);
 			}else{
 				// System.out.println("\tinvalid");
 			}
@@ -211,17 +222,22 @@ public class Planner {
 		//climbs
 		if(ClimbUp.checkPreconditions(n.value) == true){
 				//create the ClimbUp object
-				decisionNode upNode = new decisionNode(ClimbUp.applyPostconditions(n.value), n);	
-				n.children.add(upNode);
-				stateQueue.add(upNode);
+				decisionNode upNode = new decisionNode(ClimbUp.applyPostconditions(n.value), n);
+				//set the node's priority	
+				// n.children.add(upNode);
+				// stateQueue.add(upNode);
 		}
 
 		if(ClimbDown.checkPreconditions(n.value) == true){
 			//create the ClimbDown object
 			decisionNode downNode = new decisionNode(ClimbDown.applyPostconditions(n.value), n);
-			n.children.add(downNode);
-			stateQueue.add(downNode);
+			//set the node's priority
+			// n.children.add(downNode);
+			// stateQueue.add(downNode);
 		}
+
+		//Go through list of possible children and add the ones with high priority, skipping the ones with low priority
+
 
 		return 0;
 

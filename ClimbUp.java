@@ -15,7 +15,7 @@ public class ClimbUp{
 
     public static WorldState applyPostconditions(WorldState preOperation) {
         //create and return a new WorldState with all conditions constant except for the updated height='Heigh'
-        WorldState postOperation = new WorldState(preOperation.getRoomMonkeyIn(),preOperation.getRoomBoxIn(), preOperation.getroomBananasIn(), WorldState.HEIGHT_HIGH, preOperation.getMonkeyHasBananas(), operatorName);
+        WorldState postOperation = new WorldState(preOperation.getRoomMonkeyIn(),preOperation.getRoomBoxIn(), preOperation.getRoomBananasIn(), WorldState.HEIGHT_HIGH, preOperation.getMonkeyHasBananas(), operatorName);
         return postOperation;
     }
 

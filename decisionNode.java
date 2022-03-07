@@ -6,6 +6,7 @@ public class decisionNode {
     WorldState value;
     decisionNode parent;
     public ArrayList<decisionNode> children = new ArrayList<>();
+    private int priority;
 
     decisionNode(WorldState state, decisionNode parent){
 
@@ -19,10 +20,19 @@ public class decisionNode {
 
     //}
 
+    public void setPriority(int pri){
+        this.priority = pri;
+    }
+
+    public int getPriority(){
+        return this.priority;
+    }
+
     public void printChildren(){
         System.out.println("************Printing Children of " + this.value.lastOp + " *************");
         for (decisionNode Node : children) {
-            System.out.println("\n" + Node.value.lastOp + ": Monke in " + Node.value.getRoomMonkeyIn());
+            System.out.println("\n" + Node.value.lastOp + ": Monke in " + Node.value.getRoomMonkeyIn() + "priority: " + Node.priority);
+            
         }
         System.out.println("*****************************************************");
     }

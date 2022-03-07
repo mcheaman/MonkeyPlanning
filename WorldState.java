@@ -33,7 +33,7 @@ public class WorldState {
     public String getRoomBoxIn(){
         return this.roomBoxIn;
     }
-    public String getroomBananasIn(){
+    public String getRoomBananasIn(){
         return this.roomBananasIn;
     }
     public String getMonkeyHeight(){

@@ -10,6 +10,8 @@ public class Planner {
 
 	}
 
+	public int maxPriority;
+
 	//Sets up the scenario for our monkey
 	public void Scenario(){
 
@@ -164,13 +166,35 @@ public class Planner {
 
 
 	//Set the priority of a decisionNode to denote how "productive" its WorldState is
-	public void setPriority(){
+	public void calcPriority(decisionNode n){
+
+		int priority = 0;
+
 		//If not in room with box and moving towards room with box
 			//priority set to 1
+		if(n.value.lastOp.substring(0,4).equalsIgnoreCase("Move") && n.value.getRoomMonkeyIn().equalsIgnoreCase(n.value.getRoomBoxIn())){
+			priority += 1;
+		}
+		
 		//If box not in room with bananas and moving box to room with bananas
 			//priority set to 2
+
+		if(n.value.lastOp.substring(0,4).equalsIgnoreCase("Push") && n.value.getRoomMonkeyIn().equalsIgnoreCase(n.value.getRoomBananasIn())){
+			priority += 2;
+		}
 		//If height is low and in room with bananas, and trying to set height to high
 			//priority set to 3
+
+		if(n.value.getMonkeyHeight().equalsIgnoreCase("High") && n.value.getRoomMonkeyIn().equalsIgnoreCase(n.value.getRoomBananasIn())){
+			priority +=3;
+		}
+
+		if(priority > maxPriority){
+			maxPriority = priority;
+		}
+
+
+		n.setPriority(priority);
 
 	}
 	public boolean goalReached(decisionNode n){
@@ -182,6 +206,7 @@ public class Planner {
 		//List<String> rooms = getRooms();
 		String currentRoom = n.value.getRoomMonkeyIn();
 		
+		maxPriority = 0;
 		//Go through list of all possible moves?
 
 		// //Goal check:
@@ -191,26 +216,36 @@ public class Planner {
 		// 	return 1;
 		// }
 
+		ArrayList<decisionNode> possibleMoves = new ArrayList<decisionNode>();
+	
 		//Move Checks & Push Checks
 		for (int i = 0; i < 3; i++) {
 			
 			String room = "" + WorldState.rooms.charAt(i);
+			
 
 			Move potential = new Move(currentRoom, room);
 			Push potentialp = new Push(currentRoom, room);
+
 			if(potential.checkPreconditions(n.value) == true){
 				//create the move object
 				decisionNode moveNode = new decisionNode(potential.applyPostconditions(n.value), n);
 				//set the node's priority
 					//**add to arraylist of possible children**
-				// n.children.add(moveNode);
-				// stateQueue.add(moveNode);
+					calcPriority(moveNode);
+					possibleMoves.add(moveNode);
+					//n.children.add(MoveNode)
+					// n.children.add(moveNode);
+					// stateQueue.add(moveNode);
 			}else{
 				// System.out.println("\tinvalid");
 			}
 			if(potentialp.checkPreconditions(n.value) == true){
 				decisionNode pushNode = new decisionNode(potentialp.applyPostconditions(n.value), n);
-				//set the node's priority				
+				//set the node's priority	
+				
+				calcPriority(pushNode);
+				possibleMoves.add(pushNode);
 				// n.children.add(pushNode);
 				// stateQueue.add(pushNode);
 			}else{
@@ -224,6 +259,8 @@ public class Planner {
 				//create the ClimbUp object
 				decisionNode upNode = new decisionNode(ClimbUp.applyPostconditions(n.value), n);
 				//set the node's priority	
+				calcPriority(upNode);
+				possibleMoves.add(upNode);
 				// n.children.add(upNode);
 				// stateQueue.add(upNode);
 		}
@@ -232,12 +269,22 @@ public class Planner {
 			//create the ClimbDown object
 			decisionNode downNode = new decisionNode(ClimbDown.applyPostconditions(n.value), n);
 			//set the node's priority
+			calcPriority(downNode);
+			possibleMoves.add(downNode);
 			// n.children.add(downNode);
 			// stateQueue.add(downNode);
 		}
 
 		//Go through list of possible children and add the ones with high priority, skipping the ones with low priority
+		for(decisionNode e : possibleMoves){
 
+			//from max priority: Add only the nodes with maxPriority
+			if(e.getPriority() == maxPriority){
+				n.children.add(e);
+				stateQueue.add(e);
+			}
+
+		}
 
 		return 0;
 

@@ -1,5 +1,5 @@
 public class ClimbDown{
-    public static String operatorName = "CLIMBDOWN";
+    public static String operatorName = "ClimbDown";
 
 
     public static boolean checkPreconditions(WorldState worldState) {
@@ -13,7 +13,7 @@ public class ClimbDown{
 
     public static WorldState applyPostconditions(WorldState preOperation) {
         //create and return a new WorldState with all conditions constant except for the updated height='Low'
-        WorldState postOperation = new WorldState(preOperation.getRoomMonkeyIn(),preOperation.getRoomBoxIn(), preOperation.getRoomBananasIn(), WorldState.HEIGHT_LOW, preOperation.getMonkeyHasBananas(), operatorName);
+        WorldState postOperation = new WorldState(preOperation.getRoomMonkeyIn(),preOperation.getRoomBoxIn(), preOperation.getRoomBananasIn(), WorldState.HEIGHT_LOW, preOperation.getMonkeyHasBananas(), operatorName +"()");
         return postOperation;
     }
 }

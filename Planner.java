@@ -5,6 +5,7 @@ import java.util.Queue;
 public class Planner {
 
 	private Queue<decisionNode> stateQueue;
+	Scanner input;
 
 	public Planner(){
 
@@ -19,7 +20,7 @@ public class Planner {
 
 		boolean choosing = true;
 
-		Scanner input = new Scanner(System.in);
+		input = new Scanner(System.in);
 
 		String roomM = "";
 		String roomB = "";
@@ -98,10 +99,10 @@ public class Planner {
 		} 
 
 
-		Plan(roomM, roomB, roomN);
+		Plan(roomM.toUpperCase(), roomB.toUpperCase(), roomN.toUpperCase());
 
 
-		System.out.println("=========================================================");
+        System.out.println("=================================================");
 
 
 	}
@@ -139,28 +140,18 @@ public class Planner {
 
 
 		decisionNode currentNode;
-		// int x = 0;
 		while(true){ //While goal is not reached
-			//Implement breadth first search with inspo from https://www.baeldung.com/java-breadth-first-search#algorithm-trees
 
-			//1. Pop first node from the queue
-			//2. If node is a goal state
-				//3. end search
-			//4. else
-				//5. add node's children to the queue and goto 1
-					//To do this, make the Queue a global variable and add to it in generateChildren
 			currentNode = stateQueue.remove();
 			if(goalReached(currentNode)){
-				System.out.println("Goal reached");
 				decisionNode goalNode = new decisionNode(Grab.applyPostconditions(currentNode.value), currentNode);
-				goalNode.printParents();
-				//some end procedure
-				break;
+				goalNode.printPlan();
+				input.close();
+				return;
 			}else{
 				generateChildren(currentNode);
-				currentNode.printChildren();
+				// currentNode.printChildren();
 			}
-			// x++;
 		}
 	}
 
@@ -171,20 +162,19 @@ public class Planner {
 		int priority = 0;
 
 		//If not in room with box and moving towards room with box
-			//priority set to 1
+		//priority set to 1
 		if(n.value.lastOp.substring(0,4).equalsIgnoreCase("Move") && n.value.getRoomMonkeyIn().equalsIgnoreCase(n.value.getRoomBoxIn())){
 			priority += 1;
 		}
 		
 		//If box not in room with bananas and moving box to room with bananas
-			//priority set to 2
-
+		//priority set to 2
 		if(n.value.lastOp.substring(0,4).equalsIgnoreCase("Push") && n.value.getRoomMonkeyIn().equalsIgnoreCase(n.value.getRoomBananasIn())){
 			priority += 2;
 		}
-		//If height is low and in room with bananas, and trying to set height to high
-			//priority set to 3
 
+		//If height is low and in room with bananas, and trying to set height to high
+		//priority set to 3
 		if(n.value.getMonkeyHeight().equalsIgnoreCase("High") && n.value.getRoomMonkeyIn().equalsIgnoreCase(n.value.getRoomBananasIn())){
 			priority +=3;
 		}
@@ -203,18 +193,9 @@ public class Planner {
 
 	public int generateChildren(decisionNode n){
 
-		//List<String> rooms = getRooms();
 		String currentRoom = n.value.getRoomMonkeyIn();
 		
 		maxPriority = 0;
-		//Go through list of all possible moves?
-
-		// //Goal check:
-		// if(Grab.checkPreconditions(n.value) == true){
-		// 	decisionNode goalNode = new decisionNode(Grab.applyPostconditions(n.value));
-		// 	n.children.add(goalNode);
-		// 	return 1;
-		// }
 
 		ArrayList<decisionNode> possibleMoves = new ArrayList<decisionNode>();
 	
@@ -231,25 +212,15 @@ public class Planner {
 				//create the move object
 				decisionNode moveNode = new decisionNode(potential.applyPostconditions(n.value), n);
 				//set the node's priority
-					//**add to arraylist of possible children**
-					calcPriority(moveNode);
-					possibleMoves.add(moveNode);
-					//n.children.add(MoveNode)
-					// n.children.add(moveNode);
-					// stateQueue.add(moveNode);
-			}else{
-				// System.out.println("\tinvalid");
+				calcPriority(moveNode);
+				possibleMoves.add(moveNode);
 			}
+			
 			if(potentialp.checkPreconditions(n.value) == true){
 				decisionNode pushNode = new decisionNode(potentialp.applyPostconditions(n.value), n);
-				//set the node's priority	
-				
+				//set the node's priority		
 				calcPriority(pushNode);
 				possibleMoves.add(pushNode);
-				// n.children.add(pushNode);
-				// stateQueue.add(pushNode);
-			}else{
-				// System.out.println("\tinvalid");
 			}
 
 		}
@@ -261,8 +232,6 @@ public class Planner {
 				//set the node's priority	
 				calcPriority(upNode);
 				possibleMoves.add(upNode);
-				// n.children.add(upNode);
-				// stateQueue.add(upNode);
 		}
 
 		if(ClimbDown.checkPreconditions(n.value) == true){
@@ -271,8 +240,6 @@ public class Planner {
 			//set the node's priority
 			calcPriority(downNode);
 			possibleMoves.add(downNode);
-			// n.children.add(downNode);
-			// stateQueue.add(downNode);
 		}
 
 		//Go through list of possible children and add the ones with high priority, skipping the ones with low priority

@@ -14,11 +14,6 @@ public class decisionNode {
         this.parent = parent; 
     }
 
-    //public ArrayList<WorldState> returnChildren(decisionNode n){
-
-    //   return n.children;
-
-    //}
 
     public void setPriority(int pri){
         this.priority = pri;
@@ -37,15 +32,19 @@ public class decisionNode {
         System.out.println("*****************************************************");
     }
 
-    public void printParents(){
-        System.out.println("************Printing Parents*************");
+    public void printPlan(){
+        ArrayList<String> plan = new ArrayList<String>();
         decisionNode temp = this;
         while(temp != null) {
-            System.out.println("\n" + temp.value.lastOp + ": Monke in " + temp.value.getRoomMonkeyIn());
+            plan.add(temp.value.lastOp);
             temp = temp.parent;
         }
-        System.out.println("*******************************************");
+        System.out.println("Plan:");
+        for(int i = plan.size()-2; i>=0; i--){
+            System.out.println(plan.get(i));
+        }
     }
+
 
 
 

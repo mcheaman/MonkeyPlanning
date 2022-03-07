@@ -1,5 +1,5 @@
 public class Grab{
-    public static String operatorName = "GRAB";
+    public static String operatorName = "Grab";
 
     public static boolean checkPreconditions(WorldState worldState) {
         if(!worldState.isMonkeyAt(worldState.getRoomBananasIn())){
@@ -15,7 +15,7 @@ public class Grab{
 
     public static WorldState applyPostconditions(WorldState preOperation) {
         //create and return a new WorldState with all conditions constant except for the updated monkeyHasBananas=true
-        WorldState postOperation = new WorldState(preOperation.getRoomMonkeyIn(),preOperation.getRoomBoxIn(), preOperation.getRoomBananasIn(), preOperation.getMonkeyHeight(), true, operatorName);
+        WorldState postOperation = new WorldState(preOperation.getRoomMonkeyIn(),preOperation.getRoomBoxIn(), preOperation.getRoomBananasIn(), preOperation.getMonkeyHeight(), true, operatorName +"()");
         return postOperation;
     }
 

@@ -1,3 +1,7 @@
+//Authors: Mason Heaman & Gemma Gendreau
+//Date: 3/6/22
+//Grab: Monkeys grab action
+
 public class Grab{
     public static String operatorName = "Grab";
 

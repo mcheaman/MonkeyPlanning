@@ -1,3 +1,7 @@
+//Authors: Mason Heaman & Gemma Gendreau
+//Date: 3/6/22
+//Planner: Driver class of MonkeyPlanning. 
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.LinkedList;

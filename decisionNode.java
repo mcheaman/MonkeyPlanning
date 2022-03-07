@@ -1,3 +1,7 @@
+//Authors: Mason Heaman & Gemma Gendreau
+//Date: 3/6/22
+//decisionNode: represents a possible monkey move
+
 import java.util.ArrayList;
 
 public class decisionNode {

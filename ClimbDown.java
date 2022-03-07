@@ -1,3 +1,7 @@
+//Authors: Mason Heaman & Gemma Gendreau
+//Date: 3/6/22
+//Climbdown: climbdown action of the monkey
+
 public class ClimbDown{
     public static String operatorName = "ClimbDown";
 

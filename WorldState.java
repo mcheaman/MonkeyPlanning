@@ -1,3 +1,8 @@
+//Authors: Mason Heaman & Gemma Gendreau
+//Date: 3/6/22
+//Worldstate: tracks the state of the monkey world
+
+
 public class WorldState {
     private String roomMonkeyIn;
     private String roomBoxIn;

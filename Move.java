@@ -1,3 +1,7 @@
+//Authors: Mason Heaman & Gemma Gendreau
+//Date: 3/6/22
+//Move: the move action of the monkey
+
 
 public class Move {
     public static String operatorName = "Move";
